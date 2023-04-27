@@ -1,4 +1,4 @@
-package com.hussein.nytimes.ui.theme
+package com.hussein.nytimes.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package com.hussein.nytimes.ui.theme
+package com.hussein.nytimes.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

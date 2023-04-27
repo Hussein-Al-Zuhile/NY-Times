@@ -1,0 +1,33 @@
+ext.versions = [
+        sdk                         : 33,
+        minSdk                      : 24,
+        buildTools                  : "33.0.0",
+
+        // app
+        appCode                     : 1,
+        appName                     : "1.0.0",
+
+        // Gradle
+        gradle                      : '8.0.0',
+
+        // Kotlin
+        kotlin                      : '1.8.20',
+        coroutines                  : "1.6.4",
+        kotlinComposeCompilerVersion: '1.4.6',
+
+        // AndroidX
+        composeBom                  : '2022.10.00',
+        activityCompose             : '1.7.1',
+        core                        : "1.10.0",
+        composeHilt                 : '1.0.0',
+        lifecycle                   : '2.6.1',
+
+        // Google
+        hilt                        : '2.45',
+
+        // Third party
+        moshi                       : "1.14.0",
+        okHttp                      : '5.0.0-alpha.11',
+        okio                        : '3.3.0',
+        retrofit                    : "2.9.0",
+]
