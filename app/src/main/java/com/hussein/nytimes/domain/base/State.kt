@@ -17,30 +17,30 @@ sealed class State<out T> {
 
     }
 
-    data class Initial<T>(override val message: String?) : State<T>()
+    data class Initial<T>(override val message: String? = null) : State<T>()
 
     sealed class Loading<T> : State<T>() {
 
-        data class Generic<T>(override val message: String?) : Loading<T>()
+        data class Generic<T>(override val message: String? = null) : Loading<T>()
 
-        data class Refreshing<T>(override val message: String?) : Loading<T>()
+        data class Refreshing<T>(override val message: String? = null) : Loading<T>()
 
     }
 
     sealed class Success<T> : State<T>() {
 
-        data class Generic<T>(override val message: String?) : Success<T>()
+        data class Generic<T>(override val message: String? = null) : Success<T>()
 
-        data class Data<T>(val data: T, override val message: String?) : Success<T>()
+        data class Data<T>(val data: T, override val message: String? = null) : Success<T>()
     }
 
     sealed class Failure<T> : State<T>() {
 
-        data class Generic<T>(override val message: String?) : Failure<T>()
+        data class Generic<T>(override val message: String? = null) : Failure<T>()
 
-        data class InternetUnavailable<T>(override val message: String?) : Failure<T>()
+        data class InternetUnavailable<T>(override val message: String? = null) : Failure<T>()
 
-        data class Unauthorized<T>(override val message: String?) : Failure<T>()
+        data class Unauthorized<T>(override val message: String? = null) : Failure<T>()
 
     }
 
