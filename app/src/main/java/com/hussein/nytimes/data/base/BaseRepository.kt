@@ -5,16 +5,15 @@ import com.hussein.nytimes.data.remote.response.BaseGetListResponse
 import com.hussein.nytimes.data.remote.response.ErrorBody
 import com.hussein.nytimes.domain.base.State
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import retrofit2.Response
 import java.net.HttpURLConnection
 import java.util.concurrent.CancellationException
 
-typealias RemoteResponse<T> = Response<BaseGetListResponse<T>>
+typealias RemoteGetListResponse<T> = Response<BaseGetListResponse<T>>
 
 abstract class BaseRepository(private val moshi: Moshi) {
 
-    protected suspend fun <T> sendRemoteRequestToGetList(request: suspend () -> RemoteResponse<T>): State<List<T>> {
+    protected suspend fun <T> sendRemoteRequestToGetList(request: suspend () -> RemoteGetListResponse<T>): State<List<T>> {
         var state: State<List<T>>
 
         try {
