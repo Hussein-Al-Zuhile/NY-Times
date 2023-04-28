@@ -30,4 +30,5 @@ ext.versions = [
         okHttp                      : '5.0.0-alpha.11',
         okio                        : '3.3.0',
         retrofit                    : "2.9.0",
+        coil                        : "2.3.0",
 ]

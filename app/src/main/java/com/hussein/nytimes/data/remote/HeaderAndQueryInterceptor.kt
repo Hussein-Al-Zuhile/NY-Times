@@ -7,13 +7,17 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HeaderInterceptor @Inject constructor(
+class HeaderAndQueryInterceptor @Inject constructor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val requestWithApiKey = chain.request()
-            .newBuilder()
-            .addHeader("api-key", API_KEY)
-            .build()
+        val requestWithApiKey =
+            chain.run {
+                val urlWithAPiKey = request().url.newBuilder()
+                    .addQueryParameter("api-key", API_KEY)
+                    .build()
+
+                request().newBuilder().url(urlWithAPiKey).build()
+            }
         return chain.proceed(requestWithApiKey)
     }
 }
