@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hussein.nytimes.domain.base.State
 import com.hussein.nytimes.domain.topics.GetMostViewedTopicsUseCase
+import com.hussein.nytimes.domain.topics.GetTopicByIdUseCase
 import com.hussein.nytimes.models.Topic
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopicsViewModel @Inject constructor(
-    private val getMostViewedTopicsUseCase: GetMostViewedTopicsUseCase
+    private val getMostViewedTopicsUseCase: GetMostViewedTopicsUseCase,
+    private val getTopicByIdUseCase: GetTopicByIdUseCase,
 ) : ViewModel() {
 
     private var _topicsStateFlow =
@@ -27,11 +29,12 @@ class TopicsViewModel @Inject constructor(
 
     fun getMostViewTopics() {
         viewModelScope.launch {
-            Log.e("AAAAAAA", "getMostViewTopics: ", )
             getMostViewedTopicsUseCase().collect {
                 _topicsStateFlow.value = it
             }
         }
     }
+
+    fun getTopicById(id: Long) = getTopicByIdUseCase(id)
 
 }

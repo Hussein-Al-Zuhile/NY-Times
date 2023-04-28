@@ -6,6 +6,9 @@ import com.hussein.nytimes.models.Topic
 
 interface TopicsRepository {
 
+    var topics: List<Topic>
     suspend fun getMostViewedTopics(): State<List<Topic>>
+
+    fun getTopicById(id: Long): State<Topic>
 
 }

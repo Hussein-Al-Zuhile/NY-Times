@@ -21,6 +21,7 @@ ext.versions = [
         core                        : "1.10.0",
         composeHilt                 : '1.0.0',
         lifecycle                   : '2.6.1',
+        composeNavigation           : "2.5.3",
 
         // Google
         hilt                        : '2.45',

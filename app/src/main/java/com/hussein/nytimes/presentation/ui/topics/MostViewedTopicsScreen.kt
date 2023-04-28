@@ -202,7 +202,7 @@ val previewTopics = listOf(
     Topic(
         1,
         "",
-        "",
+        "NY Times",
         "2023-04-27",
         "",
         "Airman Accused of Leak Has History of Racist and Violent Remarks, Filing Says",

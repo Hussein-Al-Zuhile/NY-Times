@@ -42,6 +42,8 @@ sealed class State<out T> {
 
         data class Unauthorized<T>(override val message: String? = null) : Failure<T>()
 
+        data class ItemNotFound<T>(override val message: String? = null) : Failure<T>()
+
     }
 
     val dataOrNull get() = if (this is Success.Data) data else null
