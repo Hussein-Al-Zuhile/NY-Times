@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -17,6 +18,7 @@ import com.hussein.nytimes.presentation.ui.theme.NYTimesTheme
 import com.hussein.nytimes.presentation.ui.topics.MostViewedTopicsScreen
 import com.hussein.nytimes.presentation.ui.topics.TopicDetailsScreen
 import com.hussein.nytimes.presentation.ui.topics.TopicsViewModel
+import com.hussein.nytimes.utility.LightAndNightPreviews
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

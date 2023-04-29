@@ -31,8 +31,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.hussein.nytimes.R
 import com.hussein.nytimes.domain.base.State
 import com.hussein.nytimes.domain.base.fallbackMessage
 import com.hussein.nytimes.models.Topic
@@ -111,7 +113,7 @@ fun TopicDetails(modifier: Modifier = Modifier, topic: Topic) {
                 Modifier.padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(imageVector = Icons.Default.Edit, contentDescription = "Source")
+                Icon(imageVector = Icons.Default.Edit, contentDescription = stringResource(R.string.content_description_source))
                 Text(
                     modifier = Modifier.padding(start = 4.dp),
                     text = topic.source,
@@ -120,7 +122,7 @@ fun TopicDetails(modifier: Modifier = Modifier, topic: Topic) {
                 Spacer(modifier = Modifier.weight(1f))
                 Icon(
                     imageVector = Icons.Default.DateRange,
-                    contentDescription = "Publishing date"
+                    contentDescription = stringResource(id = R.string.content_description_publishing_date)
                 )
                 Text(
                     modifier = Modifier.padding(start = 4.dp),

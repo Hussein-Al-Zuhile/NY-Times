@@ -4,4 +4,7 @@
     <string name="message_internet_unavailable">Internet is unavailable, check your internet connection</string>
     <string name="message_unauthorized">Unauthorized</string>
     <string name="message_failure">Unknown error, something went wrong</string>
+    <string name="label_retry">Retry</string>
+    <string name="content_description_publishing_date">Publishing date</string>
+    <string name="content_description_source">Source</string>
 </resources>

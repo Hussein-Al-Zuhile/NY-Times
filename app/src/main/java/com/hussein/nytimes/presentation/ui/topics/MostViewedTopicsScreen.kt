@@ -47,6 +47,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
@@ -54,6 +55,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import com.hussein.nytimes.R
 import com.hussein.nytimes.domain.base.State
 import com.hussein.nytimes.domain.base.fallbackMessage
 import com.hussein.nytimes.models.Media
@@ -90,9 +92,7 @@ fun MostViewedTopicsScreen(
             when (topicsState) {
                 is State.Loading -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(modifier = Modifier.semantics {
-                            contentDescription = "Loading"
-                        })
+                        CircularProgressIndicator()
                     }
                 }
 
@@ -110,7 +110,7 @@ fun MostViewedTopicsScreen(
 
                 is State.Failure -> {
                     Button(onClick = onRetry, modifier = Modifier.align(Alignment.Center)) {
-                        Text(text = "Retry")
+                        Text(text = stringResource(R.string.label_retry))
                     }
                     SnackbarHost(
                         modifier = Modifier.align(Alignment.BottomCenter),
@@ -167,7 +167,7 @@ fun TopicItem(modifier: Modifier = Modifier, topic: Topic, onItemClicked: (Topic
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
                             imageVector = Icons.Default.DateRange,
-                            contentDescription = "Publishing date"
+                            contentDescription = stringResource(R.string.content_description_publishing_date)
                         )
                         Text(
                             modifier = Modifier.padding(start = 4.dp),
@@ -199,7 +199,7 @@ fun MostViewedTopicsScreenPreview() {
                 emit(State.loading())
                 delay(2000)
                 emit(
-                    State.failure("SSSSS")
+                    State.failure("Failure message")
                 )
             }, onItemClicked = {}, {})
     }
