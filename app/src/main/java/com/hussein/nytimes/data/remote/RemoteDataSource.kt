@@ -1,5 +1,6 @@
 package com.hussein.nytimes.data.remote
 
+import com.hussein.nytimes.BuildConfig
 import com.hussein.nytimes.utility.BASE_URL
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
@@ -20,12 +21,11 @@ class RemoteDataSource @Inject constructor(
     init {
         val okHttpClient = OkHttpClient.Builder().run {
             addInterceptor(headerAndQueryInterceptor)
-            // TODO: Retry
-//            if (BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG) {
                 val loggingInterceptor =
                     HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
                 addInterceptor(loggingInterceptor)
-//            }
+            }
 
             build()
         }

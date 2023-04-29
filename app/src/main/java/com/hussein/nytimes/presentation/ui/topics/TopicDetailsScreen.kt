@@ -2,6 +2,7 @@ package com.hussein.nytimes.presentation.ui.topics
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
@@ -27,9 +30,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.hussein.nytimes.domain.base.State
+import com.hussein.nytimes.domain.base.fallbackMessage
 import com.hussein.nytimes.models.Topic
 import com.hussein.nytimes.presentation.ui.theme.NYTimesTheme
 import com.hussein.nytimes.utility.LightAndNightPreviews
@@ -38,14 +43,22 @@ import com.hussein.nytimes.utility.LightAndNightPreviews
 fun TopicDetailsScreen(topicState: State<Topic>, modifier: Modifier = Modifier) {
     val snackbarHostState = remember { SnackbarHostState() }
 
+    val context = LocalContext.current
     LaunchedEffect(key1 = topicState, block = {
         if (topicState.isFailure) {
-            topicState.message?.let { snackbarHostState.showSnackbar(it) }
+            val message = topicState.message
+                ?: topicState.fallbackMessage?.let { context.getString(it) }
+            message?.let { snackbarHostState.showSnackbar(it) }
         }
     })
 
+    val scrollState = rememberScrollState()
     Surface {
-        Box(Modifier.fillMaxSize()) {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+        ) {
             when (topicState) {
                 is State.Success.Data -> {
                     TopicDetails(topic = topicState.data)

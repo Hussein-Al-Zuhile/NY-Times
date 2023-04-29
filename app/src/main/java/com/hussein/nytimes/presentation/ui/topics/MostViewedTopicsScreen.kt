@@ -46,12 +46,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.hussein.nytimes.domain.base.State
+import com.hussein.nytimes.domain.base.fallbackMessage
 import com.hussein.nytimes.models.Media
 import com.hussein.nytimes.models.MediaMetadata
 import com.hussein.nytimes.models.Topic
@@ -73,11 +77,12 @@ fun MostViewedTopicsScreen(
         topicsStateFlow.collectAsStateWithLifecycle(initialValue = State.initial()).value
     val snackbarHostState = remember { SnackbarHostState() }
 
+    val context = LocalContext.current
     LaunchedEffect(key1 = topicsState, block = {
         if (topicsState.isFailure) {
-            topicsState.message?.let {
-                snackbarHostState.showSnackbar(it)
-            }
+            val message = topicsState.message
+                ?: topicsState.fallbackMessage?.let { context.getString(it) }
+            message?.let { snackbarHostState.showSnackbar(it) }
         }
     })
     Surface() {
@@ -85,7 +90,9 @@ fun MostViewedTopicsScreen(
             when (topicsState) {
                 is State.Loading -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(modifier = Modifier.semantics {
+                            contentDescription = "Loading"
+                        })
                     }
                 }
 

@@ -22,16 +22,10 @@ class TopicsRepositoryImpl @Inject constructor(
         sendRemoteRequestToGetList(remoteService::getMostViewedTopics).apply {
             dataOrNull?.let {
                 topics = it
-                Log.e("SSAAAAA", "getMostViewedTopics: $topics")
             }
         }
 
     override fun getTopicById(id: Long): State<Topic> {
-        Log.e(
-            "SSSSS",
-            "getTopicById: $id" +
-                    " $topics",
-        )
         return topics.find { it.id == id }?.let {
             State.success(it)
         } ?: State.Failure.ItemNotFound()

@@ -1,5 +1,7 @@
 package com.hussein.nytimes.domain.base
 
+import com.hussein.nytimes.R
+
 sealed class State<out T> {
 
     abstract val message: String?
@@ -59,3 +61,16 @@ sealed class State<out T> {
     val isFailure get() = this is Failure
 
 }
+
+val State<*>.fallbackMessage
+    get() = when (this) {
+        is State.Success -> R.string.message_success
+
+        is State.Failure.InternetUnavailable -> R.string.message_internet_unavailable
+
+        is State.Failure.Unauthorized -> R.string.message_unauthorized
+
+        is State.Failure -> R.string.message_failure
+
+        else -> null
+    }
