@@ -4,12 +4,12 @@
 ## Clean architecture and MVVM 🏗
 The app follows the recommended architecture from google, there is three layers:
 - **Data:** contains the remote data source and repository implementation, and its DI Module (i.e DataModule).
-  -The remote data source responsible for providing retrofit remote service.
-  -The remote service responsible for fetching the data.
-  -The repository responsible for converting this data into a *State* and deliver it to the use case **without going through any logic processing.**
+  - The remote data source responsible for providing retrofit remote service.
+  - The remote service responsible for fetching the data.
+  - The repository responsible for converting this data into a *State* and deliver it to the use case **without going through any logic processing.**
 - **Domain:** contains the use-cases and the state implementation.
-  -The state is a Sealed class that represents the current state.
-  -A use-case **must handle any business logic** before or after calling the repository ( like check the internet or input parameters validity *"we didn't have this situation"* ).
+  - The state is a Sealed class that represents the current state.
+  - A use-case **must handle any business logic** before or after calling the repository ( like check the internet or input parameters validity *"we didn't have this situation"* ).
 - **Presentation:** contains the view models and the UI, the state should be remain in the view model to survive configuration changes and going to the background.
 
 ## Gradle versioning ⚙️
