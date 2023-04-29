@@ -31,5 +31,5 @@ The app should contain tests for UI, and that's what I wanted to do but there is
 The UI test that I wanted to build is testing that the loading state showing the progress indicator, and failure state showing the snackbar, and success showing the same items in the state.
 
 ## Conclusion ✔️
-I am a Senior android developer with more than 5 years experience who seeks the latest best practices, features, tools and articles about Native android development, and I am happy to be one of something big like your institution and hearing from you what do you think about me ❤️.
+I am a Senior android developer with more than 5 years experience who seeks the latest best practices, features, tools and articles about Native android development, and I am happy to be a part of something big like your institution and hearing from you what do you think about me ❤️.
 [Linkedin account](https://www.linkedin.com/in/hussein-al-zuhile-7026011a5/)
